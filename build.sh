@@ -1,5 +1,8 @@
 parent_directory="."
 
+# Set your Vercel project name (change to your actual Vercel project name)
+vercel_project_name="hauntedhouse-docker"
+
 # Loop through each repo
 for repo in "$parent_directory"/*; do
     if [ -d "$repo" ]; then
@@ -22,7 +25,8 @@ for repo in "$parent_directory"/*; do
         npm run build
         cd ..
 
-        # Copy output to the www directory
-        cp -R "$repo/output_folder" "$output_folder"
+        # Deploy to Vercel
+        echo "Deploying $repo to Vercel"
+        vercel --prod --confirm --token $VERCEL_TOKEN --scope $VERCEL_TEAM_NAME --project $vercel_project_name "$output_folder"
     fi
 done
