@@ -17,7 +17,10 @@ for repo in "$parent_directory"/*; do
         output_folder="$parent_directory/www/$project_name"
         mkdir -p "$output_folder"
         
+        # Run your build command in the project folder
+        cd "$repo"
         npm run build
+        cd ..
 
         # Copy output to the www directory
         cp -R "$repo/output_folder" "$output_folder"
