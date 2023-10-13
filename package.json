@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false"
+  }
+}
