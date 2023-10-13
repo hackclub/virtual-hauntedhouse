@@ -1,6 +1,6 @@
 parent_directory="."
 
-# Set your Vercel project name (change to your actual Vercel project name)
+
 vercel_project_name="hauntedhouse-docker"
 
 # Loop through each repo
