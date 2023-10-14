@@ -4,3 +4,7 @@
 [submodule "haunted-house-testing"]
 	path = rooms/haunted-house-testing
 	url = https://github.com/ivoinestrachan/haunted-house-testing
+
+[submodule "sinerider-leaderboard"]
+	path = rooms/sinrider-leaderboard
+	url = https://github.com/hackclub/sinerider-leaderboard
