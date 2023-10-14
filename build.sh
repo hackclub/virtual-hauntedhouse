@@ -13,17 +13,16 @@ for repo in "$parent_directory"/*; do
         fi
 
         project_name=$(basename "$repo")
-        output_folder="$parent_directory/www/$project_name"
+      
 
         if [ ! -d "$output_folder" ]; then
             echo "Building $repo"
-            mkdir -p "$output_folder"
             cd "$repo" && npm run build
             exit_status=$?
             if [ $exit_status -eq 0 ]; then
                 echo "Build succeeded for $repo"
                 echo "Starting development server for $repo"
-                cd "$repo" && npm run dev
+                cd "$repo" && npm run dev &
             else
                 echo "Build failed for $repo"
             fi
