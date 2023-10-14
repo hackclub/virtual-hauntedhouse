@@ -6,25 +6,22 @@ for repo in "$parent_directory"/*; do
         # Check if package.json exists
         if [ -f "$repo/package.json" ]; then
             echo "Installing dependencies in $repo"
-            (cd "$repo" && npm install)
+            cd "$repo" && npm install
         fi
 
-        # Build to a folder if it doesn't already exist
         project_name=$(basename "$repo")
         output_folder="$parent_directory/www/$project_name"
 
         if [ ! -d "$output_folder" ]; then
             echo "Building $repo"
             mkdir -p "$output_folder"
-            (cd "$repo" && npm run build)
+            cd "$repo" && npm run build
             exit_status=$?
             if [ $exit_status -eq 0 ]; then
                 echo "Build succeeded for $repo"
             else
                 echo "Build failed for $repo"
             fi
-        else
-            echo "Build already exists for $repo"
         fi
     fi
 done
