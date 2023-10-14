@@ -20,8 +20,10 @@ for repo in "$parent_directory"/*; do
             mkdir -p "$output_folder"
             cd "$repo" && npm run build
             exit_status=$?
-            if [ $exit_status -eq 0 ]; then
-                echo "Build succeeded for $repo"
+           echo "Build succeeded for $repo"
+
+                 echo "Starting development server for $repo"
+    cd "$repo" && npm run dev 
             else
                 echo "Build failed for $repo"
             fi
