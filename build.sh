@@ -1,3 +1,5 @@
+#!/bin/bash
+
 parent_directory="."
 
 # Loop through each repo
@@ -6,9 +8,7 @@ for repo in "$parent_directory"/*; do
         # Check if package.json exists
         if [ -f "$repo/package.json" ]; then
             echo "Installing dependencies in $repo"
-            cd "$repo"
-            npm install
-            cd ..
+            (cd "$repo" && npm install)  # Use subshell to avoid changing the working directory
         fi
 
         # Build to a folder
@@ -18,9 +18,7 @@ for repo in "$parent_directory"/*; do
         mkdir -p "$output_folder"
         
         # Run your build command in the project folder
-        cd "$repo"
-        npm run build
-        cd ..
+        (cd "$repo" && npm run build)  # Use subshell to avoid changing the working directory
 
     fi
 done
