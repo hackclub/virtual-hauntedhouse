@@ -1,12 +1,15 @@
 parent_directory="."
 
-# Loop through each repo
 for repo in "$parent_directory"/*; do
     if [ -d "$repo" ]; then
-        # Check if package.json exists
         if [ -f "$repo/package.json" ]; then
             echo "Installing dependencies in $repo"
-            cd "$repo" && npm install
+
+            if [ -f "$repo/yarn.lock" ]; then
+                (cd "$repo" && yarn install)
+            else
+                (cd "$repo" && npm install)
+            fi
         fi
 
         project_name=$(basename "$repo")
