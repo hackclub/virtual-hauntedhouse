@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build": "./build.sh",
-    "dev": "node server.js"
+    "build": "./build.sh"
   }
 }
