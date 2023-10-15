@@ -1,5 +1,7 @@
 {
   "scripts": {
-    "build": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "build": "./build.sh",
+    "dev": "./run"
   }
 }
