@@ -1,5 +1,3 @@
-#!/bin/bash
-
 submodules=(
   "wandering-wavelength=https://github.com/ShubhamPatilsd/wandering-wavelength"
   "haunted-house-testing=https://github.com/ivoinestrachan/haunted-house-testing"
@@ -11,15 +9,13 @@ for submodule in "${submodules[@]}"; do
   submodule_name="${parts[0]}"
   submodule_url="${parts[1]}"
 
-  # Clone submodule and deploy to Vercel
   git submodule add "$submodule_url" "rooms/$submodule_name"
   cd "rooms/$submodule_name"
   
-  yes "y" | vercel --prod
 
-  echo "hackclub" | vercel --prod
-
-  read -p "Enter the existing project name: " project_name
+  echo "y" | vercel --prod
+  echo "sikethedev" | vercel --prod  
+  
   echo "$project_name" | vercel --prod
 
   cd ../../
