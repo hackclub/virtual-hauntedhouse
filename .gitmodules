@@ -8,3 +8,6 @@
 [submodule "sinerider-leaderboard"]
 	path = rooms/sinrider-leaderboard
 	url = https://github.com/hackclub/sinerider-leaderboard
+[submodule "rooms/sinrider-leaderboard"]
+	path = rooms/sinrider-leaderboard
+	url = https://github.com/hackclub/sinerider-leaderboard
