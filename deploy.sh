@@ -14,7 +14,7 @@ for submodule in "${submodules[@]}"; do
   
 
   echo "y" | vercel --prod
-  echo "ShubhamPatilsd" | vercel --prod  
+  echo "sikethedev" | vercel --prod  
   
   echo "$project_name" | vercel --prod
 
