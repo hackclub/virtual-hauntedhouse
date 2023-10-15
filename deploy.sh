@@ -1,7 +1,6 @@
 submodules=(
   "wandering-wavelength=https://github.com/ShubhamPatilsd/wandering-wavelength"
   "haunted-house-testing=https://github.com/ivoinestrachan/haunted-house-testing"
-  "sinrider-leaderboard=https://github.com/hackclub/sinerider-leaderboard"
 )
 
 for submodule in "${submodules[@]}"; do
