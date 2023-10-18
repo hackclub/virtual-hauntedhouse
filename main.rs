@@ -25,7 +25,7 @@ fn clone_website_repositories() {
             .output();
 
         match result {
-            Ok(output) => println!("git cloned: {}", String::from_utf8_lossy(&output.stdout)),
+            Ok(_output) => println!("git cloned {}", repo_folder),
             Err(err) => println!("failed to clone repository: {}", err),
         }
     }
