@@ -2,7 +2,7 @@ use std::process::Command;
 use std::fs;
 
 const WEBSITE_REPO_URLS: [&str; 2] = [
-    "https://github.com/ivoinestrachan/haunted-house-testing.git",
+    "https://github.com/ivoinestrachan/haunted-house-testing",
     "https://github.com/ShubhamPatilsd/wandering-wavelength"
 ];
 const TARGET_FOLDER: &str = "www";
@@ -36,7 +36,7 @@ fn clone_website_repositories() {
 
         if let Err(err) = Command::new("sh")
             .arg("-c")
-            .arg(format!("cd {} && vercel", repo_folder))
+            .arg(format!("cd {} && vercel --yes", repo_folder))
             .status()
         {
             println!("failed to run 'vercel' command: {}", err);
