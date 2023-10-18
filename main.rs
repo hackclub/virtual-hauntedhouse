@@ -1,5 +1,8 @@
 use std::process::{Command, Stdio};
 use std::fs;
+use std::fs::File;
+use std::io::{Write, Result};
+use std::fs::OpenOptions;
 
 const WEBSITE_REPO_URLS: &[&str] = &[
     "https://github.com/ivoinestrachan/haunted-house-testing",
@@ -8,50 +11,68 @@ const WEBSITE_REPO_URLS: &[&str] = &[
 const TARGET_FOLDER: &str = "www";
 
 fn main() {
-    clone_and_deploy_websites();
+    let mut file = match OpenOptions::new().create(true).append(true).open("links.txt") {
+        Ok(f) => f,
+        Err(e) => {
+            println!("\x1b[31m[ERROR]\x1b[0m failed to open links.txt file: {}", e);
+            return;
+        }
+    };
+
+    clone_and_deploy_websites(&mut file);
 }
 
-fn clone_and_deploy_websites() {
-    let _website_repo_urls: Vec<&str> = WEBSITE_REPO_URLS.to_vec();
+fn clone_and_deploy_websites(file: &mut File) {
     for repo_url in WEBSITE_REPO_URLS.iter() {
         let repo_name = repo_url.split('/').last().unwrap_or("repo");
         let repo_folder = format!("{}/{}", TARGET_FOLDER, repo_name);
 
         if fs::metadata(&repo_folder).is_ok() {
             println!("\x1b[33m[SKIPPING]\x1b[0m repository {} already exists. skipping clone.", repo_folder);
-            continue;
-        }
+        } else {
+            println!("\x1b[36m[CLONING]\x1b[0m cloning repository from {} into folder {}", repo_url, repo_folder);
 
-        println!("\x1b[36m[CLONING]\x1b[0m cloning repository from {} into folder {}", repo_url, repo_folder);
+            let git_clone_result = Command::new("git")
+                .arg("clone")
+                .arg(repo_url)
+                .arg(&repo_folder)
+                .output();
 
-        let git_clone_result = Command::new("git")
-            .arg("clone")
-            .arg(repo_url)
-            .arg(&repo_folder)
-            .output();
+            match git_clone_result {
+                Ok(_output) => println!("\x1b[32m[SUCCESS]\x1b[0m repository {} cloned successfully.", repo_folder),
+                Err(err) => println!("\x1b[31m[ERROR]\x1b[0m failed to clone repository: {}", err),
+            }
 
-        match git_clone_result {
-            Ok(_output) => println!("\x1b[32m[SUCCESS]\x1b[0m repository {} cloned successfully.", repo_folder),
-            Err(err) => println!("\x1b[31m[ERROR]\x1b[0m failed to clone repository: {}", err),
-        }
+            if let Err(err) = fs::create_dir_all(&repo_folder) {
+                println!("\x1b[31m[ERROR]\x1b[0m failed to create directory: {}", err);
+                continue;
+            }
 
-        if let Err(err) = fs::create_dir_all(&repo_folder) {
-            println!("\x1b[31m[ERROR]\x1b[0m failed to create directory: {}", err);
-            continue;
-        }
+            let vercel_command = format!("cd {} && vercel --yes", repo_folder);
+            let shell_result = Command::new("sh")
+                .arg("-c")
+                .arg(&vercel_command)
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
+                .status();
 
-        let vercel_command = format!("cd {} && vercel --yes", repo_folder);
-        let shell_result = Command::new("sh")
-            .arg("-c")
-            .arg(&vercel_command)
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit())
-            .status();
+            match shell_result {
+                Ok(status) if status.success() => {
+                    println!("\x1b[32m[DEPLOYED]\x1b[0m website deployed using vercel: {}", repo_folder);
 
-        match shell_result {
-            Ok(status) if status.success() => println!("\x1b[32m[DEPLOYED]\x1b[0m website deployed using vercel: {}", repo_folder),
-            Ok(status) => println!("\x1b[31m[ERROR]\x1b[0m failed to deploy using vercel. Exit code: {}", status),
-            Err(err) => println!("\x1b[31m[ERROR]\x1b[0m failed to run 'vercel' command: {}", err),
+                    let deployment_url = format!("https://{}.vercel.app", repo_name);
+                    if let Err(err) = save_deployment_url_to_file(file, &deployment_url) {
+                        println!("\x1b[31m[ERROR]\x1b[0m {}", err);
+                    }
+                },
+                Ok(status) => println!("\x1b[31m[ERROR]\x1b[0m failed to deploy using vercel. Exit code: {}", status),
+                Err(err) => println!("\x1b[31m[ERROR]\x1b[0m failed to run 'vercel' command: {}", err),
+            }
         }
     }
+}
+
+fn save_deployment_url_to_file(file: &mut File, deployment_url: &str) -> Result<()> {
+    writeln!(file, "{}", deployment_url)?;
+    Ok(())
 }
