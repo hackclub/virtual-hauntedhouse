@@ -1,7 +1,0 @@
-[submodule "wandering-wavelength"]
-	path = rooms/wandering-wavelength
-	url = https://github.com/ShubhamPatilsd/wandering-wavelength
-[submodule "haunted-house-testing"]
-	path = rooms/haunted-house-testing
-	url = https://github.com/ivoinestrachan/haunted-house-testing
-
