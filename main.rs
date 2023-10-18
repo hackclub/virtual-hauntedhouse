@@ -1,4 +1,5 @@
 use std::process::Command;
+use std::fs;
 
 const WEBSITE_REPO_URLS: [&str; 2] = [
     "https://github.com/ivoinestrachan/haunted-house-testing.git",
@@ -13,7 +14,6 @@ fn main() {
 fn clone_website_repositories() {
     for repo_url in WEBSITE_REPO_URLS.iter() {
         let repo_name = repo_url.split('/').last().unwrap_or("repo");
-
         let repo_folder = format!("{}/{}", TARGET_FOLDER, repo_name);
 
         println!("cloning repository from {} into folder {}", repo_url, repo_folder);
@@ -27,6 +27,19 @@ fn clone_website_repositories() {
         match result {
             Ok(_output) => println!("git cloned {}", repo_folder),
             Err(err) => println!("failed to clone repository: {}", err),
+        }
+
+        if let Err(err) = fs::create_dir_all(&repo_folder) {
+            println!("failed to create directory: {}", err);
+            continue;
+        }
+
+        if let Err(err) = Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd {} && vercel", repo_folder))
+            .status()
+        {
+            println!("failed to run 'vercel' command: {}", err);
         }
     }
 }

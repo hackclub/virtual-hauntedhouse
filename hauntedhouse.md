@@ -1,6 +1,0 @@
-- [] Create a Server
-- [] a db for the links
-- [] create rooms for these links to act like a room in a haunted house
-- [] make a list of teams
-- [] build the repos 
-- [] make it deploy links somehow
