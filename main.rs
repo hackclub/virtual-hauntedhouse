@@ -1,7 +1,7 @@
 use std::process::{Command, Stdio};
 use std::fs;
 
-const WEBSITE_REPO_URLS: [&str; 2] = [
+const WEBSITE_REPO_URLS: &[&str] = &[
     "https://github.com/ivoinestrachan/haunted-house-testing",
     "https://github.com/ShubhamPatilsd/wandering-wavelength"
 ];
@@ -12,6 +12,7 @@ fn main() {
 }
 
 fn clone_and_deploy_websites() {
+    let _website_repo_urls: Vec<&str> = WEBSITE_REPO_URLS.to_vec();
     for repo_url in WEBSITE_REPO_URLS.iter() {
         let repo_name = repo_url.split('/').last().unwrap_or("repo");
         let repo_folder = format!("{}/{}", TARGET_FOLDER, repo_name);
