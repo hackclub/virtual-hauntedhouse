@@ -11,16 +11,17 @@ const WEBSITE_REPO_URLS: &[&str] = &[
 const TARGET_FOLDER: &str = "www";
 
 fn main() {
-    let mut file = match OpenOptions::new().create(true).append(true).open("links.txt") {
+    let mut file = match OpenOptions::new().append(true).create(true).open("links.md") {
         Ok(f) => f,
         Err(e) => {
-            println!("\x1b[31m[ERROR]\x1b[0m failed to open links.txt file: {}", e);
+            println!("\x1b[31m[ERROR]\x1b[0m failed to open links.md file: {}", e);
             return;
         }
     };
 
     clone_and_deploy_websites(&mut file);
 }
+
 
 fn clone_and_deploy_websites(file: &mut File) {
     for repo_url in WEBSITE_REPO_URLS.iter() {
@@ -61,7 +62,7 @@ fn clone_and_deploy_websites(file: &mut File) {
                     println!("\x1b[32m[DEPLOYED]\x1b[0m website deployed using vercel: {}", repo_folder);
 
                     let deployment_url = format!("https://{}.vercel.app", repo_name);
-                    if let Err(err) = save_deployment_url_to_file(file, &deployment_url) {
+                    if let Err(err) = save_deployment_info_to_md(file, &repo_name, &deployment_url) {
                         println!("\x1b[31m[ERROR]\x1b[0m {}", err);
                     }
                 },
@@ -72,7 +73,7 @@ fn clone_and_deploy_websites(file: &mut File) {
     }
 }
 
-fn save_deployment_url_to_file(file: &mut File, deployment_url: &str) -> Result<()> {
-    writeln!(file, "{}", deployment_url)?;
+fn save_deployment_info_to_md(file: &mut File, repo_name: &str, deployment_url: &str) -> Result<()> {
+    writeln!(file, "[{}]({})\n", repo_name, deployment_url)?;
     Ok(())
 }
