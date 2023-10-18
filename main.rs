@@ -1,4 +1,4 @@
-use std::process::Command;
+use std::process::{Command, Stdio};
 use std::fs;
 
 const WEBSITE_REPO_URLS: [&str; 2] = [
@@ -15,6 +15,11 @@ fn clone_website_repositories() {
     for repo_url in WEBSITE_REPO_URLS.iter() {
         let repo_name = repo_url.split('/').last().unwrap_or("repo");
         let repo_folder = format!("{}/{}", TARGET_FOLDER, repo_name);
+
+        if fs::metadata(&repo_folder).is_ok() {
+            println!("repository {} already exists, skipping.....", repo_folder);
+            continue;
+        }
 
         println!("cloning repository from {} into folder {}", repo_url, repo_folder);
 
