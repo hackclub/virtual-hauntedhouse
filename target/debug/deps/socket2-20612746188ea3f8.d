@@ -1,0 +1,11 @@
+/Users/ivoinestrachan/virtual-hauntedhouse/target/debug/deps/libsocket2-20612746188ea3f8.rmeta: /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/lib.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockaddr.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/socket.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockref.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sys/unix.rs
+
+/Users/ivoinestrachan/virtual-hauntedhouse/target/debug/deps/libsocket2-20612746188ea3f8.rlib: /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/lib.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockaddr.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/socket.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockref.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sys/unix.rs
+
+/Users/ivoinestrachan/virtual-hauntedhouse/target/debug/deps/socket2-20612746188ea3f8.d: /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/lib.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockaddr.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/socket.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockref.rs /Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sys/unix.rs
+
+/Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/lib.rs:
+/Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockaddr.rs:
+/Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/socket.rs:
+/Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sockref.rs:
+/Users/ivoinestrachan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.9/src/sys/unix.rs:
