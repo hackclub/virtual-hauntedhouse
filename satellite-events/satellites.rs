@@ -9,7 +9,7 @@ struct Location {
     repo_urls: &'static [&'static str],
 }
 
-const LOCATIONS: [Location; 2] = [
+const LOCATIONS: [Location; 3] = [
     Location {
         name: "bayarea",
         repo_urls: &[
@@ -19,6 +19,13 @@ const LOCATIONS: [Location; 2] = [
     },
     Location {
         name: "toronto",
+        repo_urls: &[
+            "https://github.com/ivoinestrachan/haunted-house-testing",
+            "https://github.com/ShubhamPatilsd/wandering-wavelength",
+        ],
+    },
+    Location {
+        name: "georgia",
         repo_urls: &[
             "https://github.com/ivoinestrachan/haunted-house-testing",
             "https://github.com/ShubhamPatilsd/wandering-wavelength",
