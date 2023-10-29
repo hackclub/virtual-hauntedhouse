@@ -18,3 +18,9 @@ vercel rm --yes haunted-mansion-room haunted-house-hackathon miffyshouse spookys
 
 [fivenightsinfrance](https://fivenightsinfrance.vercel.app)
 
+[miffyshouse](https://miffyshouse.vercel.app)
+
+[haunted-mansion-room](https://haunted-mansion-room.vercel.app)
+
+[miffyshouse](https://miffyshouse.vercel.app)
+
