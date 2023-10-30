@@ -10,7 +10,7 @@ const WEBSITE_REPO_URLS: &[&str] = &[
     "https://github.com/CaptainBlowFish/spookyscarrysite",
     "https://github.com/esjiko/miffyshouse",
     "https://github.com/edcous/haunted-house",
-    "https://github.com/hamiltrashh/fivenightsinfrance",
+    "https://github.com/ivoinestrachan/fivenightsinfrance",
     "https://github.com/MidnightPaws/haunted-mansion-room",
     "https://github.com/LJthegreat1/three-keys",
     "https://github.com/ymsolis/3doors"
