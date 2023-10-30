@@ -6,7 +6,7 @@ use std::io::{Result, Write};
 use std::process::{Command, Stdio};
 
 const WEBSITE_REPO_URLS: &[&str] = &[
-    "https://github.com/anthonyk2923/haunted-house-hackathon",
+    "https://github.com/ivoinestrachan/haunted-house-hackathon",
     "https://github.com/CaptainBlowFish/spookyscarrysite",
     "https://github.com/esjiko/miffyshouse",
     "https://github.com/edcous/haunted-house",
